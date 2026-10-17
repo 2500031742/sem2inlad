@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login</title>
+</head>
+<body>
+    <h2 align="center">Student Login</h2>
+    <form id="loginForm">
+        Email: <input type="email" id="loginEmail" placeholder="Enter your email" required><br><br>
+        Password: <input type="password" id="loginPassword" placeholder="Enter your password" required><br><br>
+        <button type="submit">Login</button>
+        <button type="button" onclick="window.location.href='Studentlogin.html'">Go to Registration</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                alert("Login successful!");
+            } else {
+                alert("Invalid email or password!");
+            }
+        });
+    </script>
+</html>
